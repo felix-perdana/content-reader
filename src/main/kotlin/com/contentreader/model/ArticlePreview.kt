@@ -1,6 +1,6 @@
 package com.contentreader.model
 
 data class ArticlePreview(
-    val link: String,
+    val url: String,
     val title: String
 ) 

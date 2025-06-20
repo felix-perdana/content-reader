@@ -1,4 +1,4 @@
-package com.ContentReader.ContentReader
+package com.contentreader
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest

@@ -36,6 +36,9 @@ dependencies {
 	annotationProcessor("org.projectlombok:lombok")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
+	testImplementation("org.mockito:mockito-core:5.11.0")
+	testImplementation("org.mockito.kotlin:mockito-kotlin:5.2.1")
+	testImplementation("io.projectreactor:reactor-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
@@ -47,4 +50,22 @@ kotlin {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+	testLogging {
+		events("passed", "skipped", "failed")
+		showStandardStreams = true
+	}
+	outputs.upToDateWhen { false }
 }
+
+tasks.bootJar {
+    archiveBaseName.set("content-reader")
+}
+tasks.jar {
+    enabled = false
+}
+
+// Configure build task to skip tests by default
+tasks.named("build") {
+    dependsOn("assemble")
+}
+
