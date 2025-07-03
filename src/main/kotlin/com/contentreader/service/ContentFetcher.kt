@@ -15,8 +15,6 @@ class ContentFetcher {
     fun fetchHeadlines(url: String): List<ArticlePreview> {
         try {
             val doc: Document = connectToUrl(url)
-            
-            // Find the section with id=tabpanelTopics1
             val section = doc.select("section#tabpanelTopics1").first()
             
             // Extract list items with links and spans

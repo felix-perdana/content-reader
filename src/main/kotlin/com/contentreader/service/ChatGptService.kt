@@ -30,11 +30,11 @@ class ChatGptService {
     }
 
     fun getTranslationCommand(content: List<String>): String {
-        val formattedContent = content.joinToString(prefix = "[", postfix = "]", separator = ", ") { "\"$it\"" }
+        val formattedContent = content.joinToString(prefix = "[", postfix = "]", separator = ";; ") { "\"$it\"" }
         val command = """
-            for each element of $formattedContent return hiragana and English translation in this format.
+            for array of $formattedContent return hiragana and English translation in this format.
             hiragana|English translation;
-            No other confirmation text or symbol. Return only one line per element                            
+            No other confirmation text or symbol. Return only one line per element of array separated by ";;"
         """.trimIndent()
         println("Generated command: \n$command")
         return command
@@ -50,4 +50,3 @@ class ChatGptService {
         return result
     }
 }
-
